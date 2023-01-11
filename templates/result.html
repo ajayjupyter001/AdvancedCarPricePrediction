@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            Advanced Car Price Prediction
+        </title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js" integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js" integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous"></script>
+        <style>
+            body{
+                background-color: rgb(65, 61, 61);
+            }
+            
+            .heading{
+                margin-top: 5%;
+                text-align: center;
+                color: white;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+            }
+            table{
+                width: 85%;
+                border: 1px solid rgb(0, 0, 0);
+                color: rgb(0, 0, 0);
+                border-spacing:0px;
+                margin-left: 8%;
+            }
+            table tr{
+                border: 1px solid rgb(0, 0, 0);
+            }
+            table td,table th{
+                padding: 10px;
+                border: 1px solid rgb(0, 0, 0);
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            }
+            .accordion{
+                width: 90%;
+                margin-left: 5%;
+                margin-top: 3%;
+            }
+            .accordion button{
+                font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+                font-weight: bold;
+            }
+            img{
+                width: 45%;
+                margin-left: 28%;
+                border-radius: 7px;
+                height: 10%;
+            }
+            .showprice{
+                margin-top:3.6%;
+            }
+            .showprice h2{
+                margin-top: 3%;
+                color: white;
+                font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+                text-align: center;
+            }
+            .colors{
+                color: rgb(27, 27, 27);
+            }
+            .buttons{
+                margin-top: 3%;
+            }
+            .buttons button{
+                margin-left: 45%;
+                padding: 0.5%;
+                border-radius: 5px;
+                border: none;
+                background-color: green;
+                padding: 0.8% 2%;
+                color: white;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="heading">
+          <h1>ADVANCE CAR PRICE PREDICTION</h1>
+          <hr style="color: white;">
+        </div>
+        <div class="showprice">
+            <div class="image">
+                <img src="../static/images/Peninsula x Rolls Royce phantom.webp" alt="Tata Nexon">
+            </div>
+            <div class="shower">
+                <h2>The Predicted Price of {{ form_datas["Model"][0] }} {{ form_datas["Varient"][0] }} is {{ "{0:.0f}".format((price)/4) }}</h2>
+            </div>
+        </div>
+        <div class="buttons">
+            <a href="prediction"><button>Predict Again</button></a>
+        </div>
+        <div class="overview">
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingOne">
+                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                        Overview
+                    </button>
+                    </h2>
+                    <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                        <table>
+                            <thead>
+                                <th>Fields</th>
+                                <th>Values</th>
+                            </thead>
+                            <tbody>
+                                {% for key in form_datas %}
+                                    <tr>
+                                        <td>{{ key }}</td>
+                                        <td>{{ form_datas["{}".format(key)][0] }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </body>
+</html>

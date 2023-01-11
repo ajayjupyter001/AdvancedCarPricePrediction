@@ -1,0 +1,648 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Advance Car Price Prediction</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+  </head>
+    <style>
+        .nav-link{
+            margin: 0px 95px;
+        }
+        .nav-item:hover{
+            background-color: black;
+        }
+        .color{
+            color: white;
+            font-size: 16px;
+        }
+        h6{
+            font-weight: normal;
+            position: relative;
+            top: 4px;
+            left: -9px;
+            font-size: 18px;
+        }
+        .bg-dark{
+            padding: 16px;
+        }
+        .content{
+            height: 100%;
+            position: relative;
+            top: 72px;
+            background-color: rgb(15, 15, 15);
+            color: white;
+        }
+        img{
+            height: 579px;
+        }
+        .container-fluid{
+          width: 100%;
+        }
+        .text{
+          font-size: 50px;
+          font-weight: bold;
+          font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+        }
+        .p{
+          font-size: 20px;
+          font-style: italic;
+        }
+        .tata-text{
+          color:  #FFFFD2;
+        }
+        .tata-p{
+          color: #FFFFD2;
+          text-decoration: underline;
+        }
+        .rolls-text{
+          color:  rgb(211, 183, 42);
+        }
+        .rolls-p{
+          color:  rgb(255, 213, 0);
+          border:2px solid #FFFFD2;
+        }
+        .list-group-item-action{
+          margin: 20px;
+          position: relative;
+          left: -20px;
+          background-color: rgb(243, 235, 235);
+          border: none;
+        }
+        .list-group{
+          background-color:rgb(243, 235, 235);
+          height: 100%;
+        }
+        .accordion{
+          width: 98%;
+          position: relative;
+          left: 1%;
+          margin-top: 25px;
+        }
+        .goal,.steps{
+          margin: 10px;
+          margin-top: 30px;
+          background-color: rgba(50, 54, 54, 0.459);
+          border-radius: 10px;
+          margin: 25px;
+          padding: 20px;
+        }
+        .goal h3{
+          font-size: 30px;
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+        }
+        .goal-text{
+          text-indent: 55px;
+          font-size: 20px;
+          padding-top: 7px;
+        }
+        .goal-groups{
+          font-size:20px;
+          margin-left: 70px;
+        }
+        .steps h3{
+          font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+          font-weight: bold;
+        }
+        .accordion-item button{
+          background-color: rgb(236, 236, 228);
+          font-size: 20px;
+          font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+        }
+        .accordion-item button span{
+          padding: 5px;
+        }
+        .accordion-body{
+          font-size: 20px;
+        }
+        .heading{
+          font-size: 22px;
+          text-indent: 27px;
+          margin-top: 5px;
+        }
+        .heading-body{
+          font-size: 18px;
+          text-indent: 55px;
+        }
+        .card{
+          width: 90%;
+          background-color: rgb(0, 0, 0);
+          margin-top: 10px;
+          margin-left: 22px;
+        }
+        .card img{
+          width: 100%;
+          height: 30%;
+        }
+        .button{
+          padding: 10px;
+          background-color: green;
+          width: 100%;
+        }
+        .button a{
+          text-decoration: none;
+          font-size: 20px;
+          color: rgb(231, 220, 220);
+          font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+          text-align: center;
+        }
+        .btn1{
+          position: relative;
+          top: 28px;
+        }
+        .btn2{
+          position: relative;
+          top: 103px;
+        }
+        .btn3{
+          position: relative;
+          top: 55px;
+        }
+        .card-text{
+          margin-top: 20px;
+        }
+        .card-text span{
+          font-weight: bold;
+        }
+        .img-container img{
+          width: 160px;
+          height: 160px;
+          border-radius: 100%;
+        }
+        .img-container{
+          float: left;
+          margin-top: 50px;
+          margin: 50px;
+        }
+        .info{
+          float: left;
+          margin-top: 100px;
+        }
+        .social-link{
+          float: right;
+          margin-top: 150px; 
+          margin-right: 50px;  
+        }
+        .clear{
+          clear: both;
+        }
+        .loader{
+          background-color: black;
+          height: 100%;
+          width: 100%;
+          position: fixed;
+        }
+        .card:hover{
+          transform: scale(1.02,1.02);
+          transition: 0.009s linear;
+        }
+    </style>
+  <body>
+    <div id="loader">
+      <div class="header">
+        <nav class="navbar navbar-expand-lg bg-dark placeholder-glow">
+            <div class="container-fluid placeholder-glow">
+              <h6 class="color placeholder">ADVANCE CAR PRICE PREDICTION</h6>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href=""><span class="color placeholder">Home</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href=""><span class="color placeholder">Prediction</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href=""><span class="color placeholder">Code</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#footer"><span class="color placeholder">Contact</span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+      </div>
+      <div class="image-flow placeholder-glow" style="background-color: black;">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="..." class="d-block w-100" alt="..." onerror="this.style.opacity='0'">
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="text benz-text placeholder">Merceder Benz C Class</h5>
+                <p class="p benz-p placeholder">World Class Best Car.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="information placeholder-glow">
+        <div class="goal">
+          <h3 class="placeholder">Goal:</h3>
+          <p class="goal-text placeholder">The main goal of this project is to predict the price of used cars using the various Machine Learning (ML) models. This can enable the customers to make decisions based on different inputs or factors namely</p>
+          <div class="goal-groups">
+            <p class="placeholder">1.Brand or Type of the car one prefers like Ford, Hyundai</p>
+            <p class="placeholder">2.Model of the car namely Ford Figo, Hyundai Creta</p>
+            <p class="placeholder">3.Location like Delhi, Chennai, Mumbai</p>
+            <p class="placeholder">4.Year of manufacturing like 2020, 2021</p>
+            <p class="placeholder">5.Type of fuel namely Petrol, Diesel</p>
+            <p class="placeholder">6.Price range or Budget</p>
+            <p class="placeholder">7.Type of transmission which the customer prefers like Automatic or Manual</p>
+            <p class="placeholder">8.Mileage etc.</p>
+          </div>
+        </div>
+        <div class="steps placeholder-glow">
+          <h3 class="placeholder">Steps:</h3>
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  <span class="placeholder">1.Data Gathering</span>
+                </button>
+              </h2>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  <span class="placeholder">2.Data Preparation</span> 
+                </button>
+              </h2>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  <span class="placeholder">3. EDA:</span> 
+                </button>
+              </h2>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                  <span class="placeholder">4 .Model Building:</span> 
+                </button>
+              </h2>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                  <span class="placeholder">5. Model Evaluation:</span>  
+                </button>
+              </h2>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingSix">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                    <span class="placeholder">6. Model Deployment:</span> 
+                  </button>
+                </h2>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="projects placeholder-glow">
+        <div class="row row-cols-1 row-cols-md-3 g-0">
+          <div class="col">
+            <div class="card h-100" aria-hidden="true">
+              <div class="card-body">
+                <h5 class="card-title placeholder">Laptop Price Prediction</h5>
+                <p class="card-text placeholder"><span class="placeholder">Primary Objective :</span> By using Machine 
+                  Learning technique to predict Laptop price.<br><br>
+                  <span class="placeholder">Solution :</span> Created an End to End project build 
+                  with ML and Dataset for this project was get 
+                  from Kaggle, Performing Feature engineering 
+                  and created various model using ML and 
+                  achieved an accuracy of 82% in train data 
+                  and 81% in test data. I had created a web app 
+                  using StreamLit and Finally deployed this 
+                  project in Heroku</p>
+                <p class="button btn1 placeholder"></p>
+                <!-- <button class="button btn1"><a href="https://laptop-price-prediction02.herokuapp.com/" target="_blank">Open</a></button> -->
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title placeholder">Olympic Analysis</h5>
+                <p class="card-text placeholder"><span class="placeholder">Primary Objective :</span> To Analysis the Olympic 
+                  data to show the countries wise 
+                  achievements.<br><br>
+                  <span class="placeholder">Solution :</span>  Created an End to End project build 
+                  with StreamLit and Dataset for this project 
+                  was get from Kaggle, Performing EDA and 
+                  created a possible Result and Finally 
+                  deployed this project in Heroku.</p>
+                <p class="button btn2 placeholder"></p>
+                <!-- <button class="button btn2"><a href="https://olymphics.herokuapp.com/" target="_blank">Open</a></button> -->
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <div class="card-body">
+                <h5 class="card-title placeholder">Movie Recommendation</h5>
+                <p class="card-text placeholder"><span class="placeholder">Primary Objective :</span> Recommend movies to 
+                  the user based on the content based 
+                  approach by using Machine Learning.<br><br>
+                  <span class="placeholder">Solution :</span> Performing preprocessing to create
+                  the movies and tags, then based on the tags, 
+                  recommend the movies to the user and 
+                  Dataset for this project was get from Kaggle. I 
+                  had created a web app using StreamLit.</p>
+                <p class="button btn3 placeholder"></p>
+                <!-- <button class="button btn3"><a href="https://github.com/Banarajay/MovieRecommendations.git" target="_blank">Open</a></button> -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="footer placeholder-glow" id="footer">
+        <div class="img-container">
+        </div>
+        <div class="info">
+            <h3 class="placeholder">AJAY A</h3>
+            <p class="placeholder">ajaydoc001@gmail.com</p>
+            <p class="placeholder">9445972514</p>
+        </div>
+        <div class="social-link">
+          <p style="position: relative;top:8px" class="placeholder">GitHub</a>
+          <br>
+          <br>
+          <p style="position: relative;top:15px" class="placeholder">Medium</p>
+        </div>
+        <br class="clear">
+        <br><br>
+        <br>
+      </div>
+      </div>
+    </div>
+    </div>
+    <div id="entire" style="display: none;">
+      <div class="header">
+        <nav class="navbar navbar-expand-lg bg-dark" id="nav">
+            <div class="container-fluid">
+              <h6 class="color">ADVANCE CAR PRICE PREDICTION</h6>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                    <a class="nav-link active" aria-current="page" href="#"><span class="color">Home</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="prediction"><span class="color">Prediction</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="code"><span class="color">Code</span></a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#footers"><span class="color">Contact</span></a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+        </nav>
+    </div>
+    <div class="content">
+      <div class="image-flow">
+        <div id="carouselExampleCaptions" class="carousel slide" data-bs-ride="false">
+          <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+          </div>
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img src="../static/images/mercedes benz c class.webp" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="text benz-text">Merceder Benz C Class</h5>
+                <p class="p benz-p">World Class Best Car.</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="../static/images/Peninsula x Rolls Royce phantom.webp" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="text rolls-text">Rolls Royos Phantom</h5>
+                <p class="p rolls-p">Take the best that exists and make it better..</p>
+              </div>
+            </div>
+            <div class="carousel-item">
+              <img src="../static/images/tata-nexon-xz plus.jpg" class="d-block w-100" alt="...">
+              <div class="carousel-caption d-none d-md-block">
+                <h5 class="text tata-text">Tata Nexon XZ Plus</h5>
+                <p class="p tata-p">Most Trusted Car in India.</p>
+              </div>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+      <div class="information">
+        <div class="goal">
+          <h3>Goal :</h3>
+          <p class="goal-text">The main goal of this project is to predict the price of used cars using the various Machine Learning (ML) models. This can enable the customers to make decisions based on different inputs or factors namely</p>
+          <div class="goal-groups">
+            <p>1.Brand or Type of the car one prefers like Ford, Hyundai</p>
+            <p>2.Model of the car namely Ford Figo, Hyundai Creta</p>
+            <p>3.Location like Delhi, Chennai, Mumbai</p>
+            <p>4.Engine Type of the car</p>
+            <p>5.Front,Rear Suspension</p>
+            <p>6.Emission Norm Compliance</p>
+            <p>7.Fuel Tank Capacity</p>
+            <p>8.Mileage etc.</p>
+          </div>
+        </div>
+        <div class="steps">
+          <h3>Steps :</h3>
+          <div class="accordion accordion-flush" id="accordionFlushExample">
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingOne">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                  <span>1.Data Gathering</span>
+                </button>
+              </h2>
+              <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body heading">Using Web scraping to collect data from https://www.cardekho.com/</div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingTwo">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                  <span>2.Data Preparation</span> 
+                </button>
+              </h2>
+              <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <h6 class="heading">Data Integration:</h6>
+                    <p class="heading-body">Data is gather for each car Model and Data varies in size and type.Here Two operations such as joining and appending are performed to combine information from different data sets. Joining tables allows you to combine the information of one observation found in one table with the information that you find in another table. Appending or stacking tables is effectively adding observations from one table to another table.</p>
+                    <h6 class="heading">Data Cleaning:</h6>
+                    <h6 class="heading-body">1. Correct Data entry based on our requirements</h6>
+                    <h6 class="heading-body">2. Remove Duplicate rows and columns to avoid Data Leakage</h6>
+                    <h6 class="heading-body">3. Fill the Nan values by using Statistical value based methods beacuse missing values follows the MCAR type</h6>
+                    <h6 class="heading">Transforming data:</h6>
+                    <h6 class="heading-body">1.	Feature Selection</h6>
+                    <h6 class="heading-body">2.	Feature Scaling</h6>
+                    <h6 class="heading-body">3.	Feature Encoding</h6></p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingThree">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                  <span>3. EDA:</span> 
+                </button>
+              </h2>
+              <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <p class="heading">Exploratory Data Analysis refers to the process of performing analysis on data so as 
+                    <h6 class="heading-body">1. To Discover patterns</h6>
+                    <h6 class="heading-body">2. To Spot anomalies,</h6> 
+                    <h6 class="heading-body">3. To test hypothesis and to check assumptions (this is optional : based on the algorithm we are using we can use this steps)</h6></p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingFour">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                  <span>4 .Model Building:</span> 
+                </button>
+              </h2>
+              <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <p class="heading">Machine Learning models are created.I try many models like DecisionTree,RandomForest,KNN,GradientBoosting</p>
+                </div>
+              </div>
+            </div>
+            <div class="accordion-item">
+              <h2 class="accordion-header" id="flush-headingFive">
+                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                  <span>5. Model Evaluation:</span>  
+                </button>
+              </h2>
+              <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body">
+                  <p class="heading">Once the model are build, the performance of the each model is evaluated and pick the best one.In these case i got GradientBoosting as the best algorithm</p>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-headingSix">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                    <span>6. Model Deployment:</span> 
+                  </button>
+                </h2>
+                <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushExample">
+                  <div class="accordion-body">
+                    <p class="heading">After testing the model and improving the efficiency, it is deployed on all users.</p>
+                  </div>
+                </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="projects" style="margin-top: 4%;">
+        <div class="row row-cols-1 row-cols-md-3 g-0">
+          <div class="col">
+            <div class="card h-100">
+              <img src="../static/images/lap.webp" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Laptop Price Prediction</h5>
+                <p class="card-text"><span>Primary Objective :</span> By using Machine 
+                  Learning technique to predict Laptop price.<br><br>
+                  <span>Solution :</span> Created an End to End project build 
+                  with ML and Dataset for this project was get 
+                  from Kaggle, Performing Feature engineering 
+                  and created various model using ML and 
+                  achieved an accuracy of 82% in train data 
+                  and 81% in test data. I had created a web app 
+                  using StreamLit and Finally deployed this 
+                  project in Heroku</p>
+                <button class="button btn1"><a href="http://ec2-13-232-154-197.ap-south-1.compute.amazonaws.com:8501/" target="_blank">Open</a></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="../static/images/olympic.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Olympic Analysis</h5>
+                <p class="card-text"><span>Primary Objective :</span> To Analysis the Olympic 
+                  data to show the countries wise 
+                  achievements.<br><br>
+                  <span>Solution :</span>  Created an End to End project build 
+                  with StreamLit and Dataset for this project 
+                  was get from Kaggle, Performing EDA and 
+                  created a possible Result and Finally 
+                  deployed this project in Heroku.</p>
+                <button class="button btn2"><a href="http://ec2-15-207-86-14.ap-south-1.compute.amazonaws.com:8501/" target="_blank">Open</a></button>
+              </div>
+            </div>
+          </div>
+          <div class="col">
+            <div class="card h-100">
+              <img src="../static/images/movie_projector_hd_picture_168713.jpg" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">Movie Recommendation</h5>
+                <p class="card-text"><span>Primary Objective :</span> Recommend movies to 
+                  the user based on the content based 
+                  approach by using Machine Learning.<br><br>
+                  <span>Solution :</span> Performing preprocessing to create
+                  the movies and tags, then based on the tags, 
+                  recommend the movies to the user and 
+                  Dataset for this project was get from Kaggle. I 
+                  had created a web app using StreamLit.</p>
+                <button class="button btn3"><a href="https://github.com/Banarajay/MovieRecommendations.git" target="_blank">Open</a></button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>  
+    <hr style="margin-top: 70px;margin-top:7%;">
+    <div class="footer" id="footers">
+      <div class="img-container" style="margin-top: 2%;">
+          <img src="../static/images/Ajay A.jpg" alt="">
+      </div>
+      <div class="info">
+          <h2 style="size: 10px;">Developed By</h2>
+          <h4>AJAY A</h4>
+          <p><i class="bi bi-envelope"></i> ajaydoc001@gmail.com</p>
+          <p><i class="bi bi-telephone"></i> 9445972514</p>
+      </div>
+      <div class="social-link">
+        <i class="bi bi-github" style="position: relative;top:8px"></i>
+        <a href="https://github.com/Banarajay" target="_blank" style="text-decoration: None; color: white;position: relative;top:8px">GitHub</a>
+        <br>
+        <br>
+        <i class="bi bi-medium"></i>
+        <a href="https://medium.com/@banarajay" target="_blank" style="text-decoration: None; color: white;">Medium</a>
+      </div>
+      <br class="clear">
+      <br><br>
+      <br>
+    </div>
+  </div>
+  </body>
+  <script>
+    var get=document.getElementById("loader");
+    var get2=document.getElementById("nav");
+    var get3=document.getElementById("entire");
+    window.addEventListener("load",function(){
+      get.style.display="none";
+      get2.classList.add("fixed-top");
+      get3.style.display="block";
+    })   
+  </script>
+</html>

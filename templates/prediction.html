@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Advance Car Price Prediction</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.2/font/bootstrap-icons.css">
+        <style>
+          body{
+            background-color: black;
+          }
+          .nav-link{
+              margin: 0px 95px;
+          }
+          .nav-item:hover{
+              background-color: black;
+          }
+          .color{
+              color: white;
+              font-size: 16px;
+          }
+          h6{
+              font-weight: normal;
+              position: relative;
+              top: 4px;
+              left: -9px;
+              font-size: 18px;
+          }
+          .bg-dark{
+              padding: 16px;
+          }
+          .heading{
+            margin-top: 120px;
+            text-align: center;
+            color: white;
+            font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+          }
+          .inputs{
+            width: 96%;
+            margin-left: 2%;
+            background-color: white;
+          }
+          .accordion-item{
+            border-radius: none;
+          }
+          .button{
+            width: 100%;
+          }
+          .button input{
+            height: 45px;
+            width: 150px;
+            margin: 20px;
+            margin-top: 30px;
+            border:none;
+            border-radius: 5px;
+            margin-left: 40%;
+          }
+          .button p{
+            height: 45px;
+            width: 150px;
+            margin: 20px;
+            margin-top: 30px;
+            border:none;
+            border-radius: 5px;
+            margin-left: 40%;
+          }
+          .inputs{
+            margin-top: 60px;
+          }
+          label{
+            font-size: 20px;
+          }
+          .accordion button{
+            font-size: 23px;
+            font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+          }
+          .accordion button i{
+            margin-right: 15px;
+          }
+          .model label{
+            margin-right: 15px;
+            position: relative;
+            top: 9px;
+            left:4px;
+          }
+          .model select{
+            margin-right: 15px;
+          } 
+          .accordion-collapse{
+            margin-top: 20px;
+          }
+          .left{
+            float:left;
+            width: 48%;
+            height: 50%;
+          }
+          .right{
+            float: right;
+            width: 48%;
+            height: 50%;
+          }
+          .remove{
+            clear: both;
+          }
+          .engine label{
+            margin-bottom: 15px;
+          }
+          .left label{
+            margin-top: 10px;
+          }
+          .right label{
+            margin-top: 10px;
+          }
+          .brakes label{
+            margin-top: 10px;
+            margin-bottom: 15px;
+          }
+          .left1{
+            float: left;
+            width: 33%;
+            position: relative;
+            left: -30px;
+          }
+          .left2{
+            float: left;
+            width: 33%;
+            position: relative;
+            left: -4px;
+          }
+          .right1{
+            float: right;
+            width: 33%;
+            position: relative;
+            left: 10px;
+          }
+          .whole-body{
+            margin-left: 20px;
+          }
+          .left1 label,.left2 label,.right1 label{
+            margin-top: 10px;
+            margin-bottom: 15px;
+          }
+          .extra{
+            position: relative;
+            left: -28px;
+          }
+          .extra select{
+            width: 103%;
+          }
+          .whole{
+            width: 100%;
+          }
+          .whole label{
+            position: relative;
+            top: -1px;
+          }
+          .loader{
+            background-color: black;
+            height: 100%;
+            width: 100%;
+            position: fixed;
+          }
+        </style>
+    </head>
+    <body>
+        <div id="loader">
+          <div class="header">
+            <nav class="navbar navbar-expand-lg bg-dark placeholder-glow">
+                <div class="container-fluid placeholder-glow">
+                  <h6 class="color placeholder">ADVANCE CAR PRICE PREDICTION</h6>
+                  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                  </button>
+                  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                      <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/"><span class="color placeholder">Home</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="prediction"><span class="color placeholder">Prediction</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link" href="code"><span class="color placeholder">Code</span></a>
+                      </li>
+                      <li class="nav-item">
+                        <a class="nav-link"><span class="color placeholder">Contact</span></a>
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+            </nav>
+          </div>  
+          <div class="heading placeholder-glow">
+            <h1 class="placeholder">ADVANCE CAR PRICE PREDICTION</h1>
+          </div>
+          <div class="inputs">
+          <form action="/result" method="get">
+            <div class="accordion placeholder-glow" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Brand</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Engine and Transmission</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Engine Type</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Fuel & Performance</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Suspension, Steering & Brakes</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Dimensions</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Comfort & Convenience</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Interior</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Exterior</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Safety</p>
+                  </button>
+                </h2>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button">
+                    <p class="placeholder">Entertainment & Communication</p>
+                  </button>
+                </h2>
+              </div>
+            </div>
+            <div class="button placeholder-glow">
+              <p class="placeholder">Submit</p>
+            </div>
+          </form>
+        </div>
+        </div>
+        <div id="content" style="display: none;">
+            <div class="header">
+              <nav class="navbar navbar-expand-lg bg-dark" id="nav">
+                  <div class="container-fluid">
+                    <h6 class="color">ADVANCE CAR PRICE PREDICTION</h6>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                      <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                          <a class="nav-link active" aria-current="page" href="/"><span class="color">Home</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="prediction"><span class="color">Prediction</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link" href="code"><span class="color">Code</span></a>
+                        </li>
+                        <li class="nav-item">
+                          <a class="nav-link disabled color" href="#footer">Contact</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+              </nav>
+        </div>
+        <div class="heading">
+          <h1>ADVANCE CAR PRICE PREDICTION</h1>
+          <hr style="color: white;">
+        </div>
+        <div class="inputs">
+          <form action="/result" method="post">
+            <div class="accordion" id="accordionPanelsStayOpenExample">
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingOne">
+                  <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseOne" aria-expanded="true" aria-controls="panelsStayOpen-collapseOne">
+                    <i class="bi bi-car-front-fill"></i>Brand
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseOne" class="accordion-collapse collapse show" aria-labelledby="panelsStayOpen-headingOne">
+                  <div class="accordion-body">
+                    <div class="input-group flex-nowrap model">
+                    <div class="whole brakes whole-body">
+                      <div class="left1">
+                        <label for="model">Model</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="model" name="Model" onchange="dynamic(this.id)">
+                          <option value="">Select</option>
+                          {% for i in data["Model"].unique() %}
+                          <option value="{{ i }}">{{ i }}</option>
+                          {% endfor %}
+                        </select>
+                      </div>
+                      <div class="left2">
+                        <label for="brand">Brand</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="brand" name="Brand" onchange="dynamic_for_varient(this.id)">
+                            <option value="">Select</option>
+                        </select>
+                      </div>
+                      <div class="right1">
+                        <label for="varient">Varient</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="varient" name="Varient">
+                            <option value="">Select</option>
+                        </select>
+                      </div>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingTwo">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseTwo" aria-expanded="false" aria-controls="panelsStayOpen-collapseTwo">
+                    <i class="bi bi-explicit-fill"></i>Engine and Transmission
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseTwo" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingTwo">
+                  <div class="accordion-body engine">
+                    <div class="left">
+                      <label for="Engine Type">Engine Type</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Engine Type" name="Engine Type">
+                          <option value="">Select</option>
+                      </select>
+                      <label for="NM">NM</label>
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="NM" name="NM">
+                        <span class="input-group-text" id="basic-addon2">Nm</span>
+                      </div>
+                    <label for="BHP">BHP</label>
+                    <div class="input-group mb-3 input-group-lg">
+                      <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="BHP" name="BHP">
+                      <span class="input-group-text" id="basic-addon2">bhp</span>
+                    </div>
+                    </div>
+                    <div class="right">
+                    <label for="Engine Displacement (cc)">Engine Displacement</label>
+                    <div class="input-group mb-3 input-group-lg">
+                      <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="Engine Displacement (cc)" name="Engine Displacement (cc)">
+                      <span class="input-group-text" id="basic-addon2">cc</span>
+                    </div>
+                      <label for="NM_RPM">NM RPM</label>
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="NM_RPM" name="NM_RPM">
+                        <span class="input-group-text" id="basic-addon2">rpm</span>
+                      </div>
+                      <label for="RPM">BHP RPM</label>
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="RPM" name="RPM">
+                        <span class="input-group-text" id="basic-addon2">rpm</span>
+                      </div>
+                    </div>
+                    <br class="remove">
+                    <div style="position: relative; left: -3px;">
+                      <label for="Gear Box">Gear Box</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Gear Box" name="Gear Box">
+                          <option value="">Select</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree">
+                    <i class="bi bi-fuel-pump-fill"></i>Fuel & Performance
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree">
+                  <div class="accordion-body engine">
+                    <div class="left">
+                      <label for="ARAI Mileage(Km/L)">ARAI Mileage</label>
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="ARAI Mileage(Km/L)" name="ARAI Mileage(Km/L)">
+                        <span class="input-group-text" id="basic-addon2">Km/L</span>
+                      </div>
+                      <label for="City Mileage(Km/L)">City Mileage</label>
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="City Mileage(Km/L)" name="City Mileage(Km/L)">
+                        <span class="input-group-text" id="basic-addon2">Km/L</span>
+                      </div>
+                    </div>
+                    <div class="right">
+                      <label for="Fuel Tank Capacity">Fuel Tank Capacity</label>
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="Fuel Tank Capacity" name="Fuel Tank Capacity">
+                        <span class="input-group-text" id="basic-addon2">L</span>
+                      </div>
+                      <label for="Emission Norm Compliance">Emission Norm Compliance</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Emission Norm Compliance" name="Emission Norm Compliance">
+                          <option value="">Select</option>
+                      </select>
+                    </div>
+                    <br class="remove">
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingFour">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseFour" aria-expanded="false" aria-controls="panelsStayOpen-collapseFour">
+                    <i class="bi bi-fan"></i>Suspension, Steering & Brakes
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseFour" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingFour">
+                  <div class="accordion-body brakes">
+                    <label for="Front Suspension">Front Suspension</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Front Suspension" name="Front Suspension">
+                        <option value="">Select</option>
+                    </select>
+                    <label for="Rear Suspension">Rear Suspension</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Rear Suspension" name="Rear Suspension">
+                        <option value="">Select</option>
+                    </select>
+                    <label for="Front Brake Type">Front Brake Type</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Front Brake Type" name="Front Brake Type">
+                        <option value="">Select</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree1">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree1" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree1">
+                    <i class="bi bi-aspect-ratio"></i>Dimensions
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree1" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree1">
+                  <div class="accordion-body engine">
+                    <div class="left">
+                      <label for="Length (mm)">Length</label>
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="Length (mm)" name="Length (mm)">
+                        <span class="input-group-text" id="basic-addon2">mm</span>
+                      </div>
+                    </div>
+                    <div class="right">
+                      <label for="Width (mm)">Width</label>
+                      <div class="input-group mb-3 input-group-lg">
+                        <input type="number" step="any" class="form-control"  aria-label="Username" aria-describedby="basic-addon1" id="Width (mm)" name="Width (mm)">
+                        <span class="input-group-text" id="basic-addon2">mm</span>
+                      </div>
+                    </div>
+                    <br class="remove">
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree2">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree2" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree2">
+                    <i class="bi bi-clipboard2-fill"></i>Comfort & Convenience
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree2" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree2">
+                  <div class="accordion-body comfort">
+                    <div class="whole-body">
+                      <div class="left1">
+                        <label for="Power Steering">Power Steering</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Power Steering" name="Power Steering">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Rear AC Vents">Rear AC Vents</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Rear AC Vents" name="Rear AC Vents">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Seat Lumbar Support">Seat Lumbar Support</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Seat Lumbar Support" name="Seat Lumbar Support">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Voice Control">Voice Control</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Voice Control" name="Voice Control">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Rear Seat Centre Arm Rest">Rear Seat Centre Arm Rest</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Rear Seat Centre Arm Rest" name="Rear Seat Centre Arm Rest">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Accessory Power Outlet">Accessory Power Outlet</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Accessory Power Outlet" name="Accessory Power Outlet">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                      </div>
+                      <div class="left2">
+                        <label for="Power Windows Front">Power Windows Front</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Power Windows Front" name="Power Windows Front">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Power Windows Rear">Power Windows Rear</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Power Windows Rear" name="Power Windows Rear">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Adjustable Steering">Adjustable Steering</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Adjustable Steering" name="Adjustable Steering">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Heater">Heater</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Heater" name="Heater">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Low Fuel Warning Light">Low Fuel Warning Light</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Low Fuel Warning Light" name="Low Fuel Warning Light">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Low Fuel Warning Light">Rear Seat Headrest</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Rear Seat Headrest" name="Rear Seat Headrest">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                      </div>
+                      <div class="right1">
+                        <label for="Air Conditioner">Air Conditioner</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Air Conditioner" name="Air Conditioner">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Trunk Light">Trunk Light</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Trunk Light" name="Trunk Light">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Height Adjustable Front Seat Belts">Height Adjustable Front Seat Belts</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Height Adjustable Front Seat Belts" name="Height Adjustable Front Seat Belts">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Smart Access Card Entry">Smart Access Card Entry</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Smart Access Card Entry" name="Smart Access Card Entry">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                        <label for="Multi-function Steering Wheel">Multi-function Steering Wheel</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Multi-function Steering Wheel" name="Multi-function Steering Wheel">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                            <option value="OPTIONAL">OPTIONAL</option>
+                        </select>
+                        <label for="Ventilated Seats">Ventilated Seats</label>
+                        <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Ventilated Seats" name="Ventilated Seats">
+                            <option value="">Select</option>
+                            <option value="YES" selected>YES</option>
+                            <option value="NO">NO</option>
+                        </select>
+                      </div>
+                      <br class="remove">
+                      <div class="brakes extra">
+                      <label for="Cup Holder Front">Cup Holder Front</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Cup Holder Front" name="Cup Holders-Front">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree3">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree3" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree3">
+                    <i class="bi bi-universal-access"></i>Interior
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree3" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree3">
+                  <div class="accordion-body brakes">
+                    <label for="Dual Tone Dashboard">Dual Tone Dashboard</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Dual Tone Dashboard" name="Dual Tone Dashboard">
+                        <option value="">Select</option>
+                        <option value="YES" selected>YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                    <label for="Leather Steering Wheel">Leather Steering Wheel</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Leather Steering Wheel" name="Leather Steering Wheel">
+                        <option value="">Select</option>
+                        <option value="YES" selected>YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                    <label for="Height Adjustable Driver Seat">Height Adjustable Driver Seat</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Height Adjustable Driver Seat" name="Height Adjustable Driver Seat">
+                        <option value="">Select</option>
+                        <option value="YES" selected>YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                    <label for="Glove Compartment">Glove Compartment</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Glove Compartment" name="Glove Compartment">
+                        <option value="">Select</option>
+                        <option value="YES" selected>YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree4">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree4" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree4">
+                    <i class="bi bi-universal-access-circle"></i>Exterior
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree4" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree4">
+                  <div class="accordion-body engine">
+                    <div class="left">
+                      <label for="Electric Folding Rear View Mirror">Electric Folding Rear View Mirror</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Electric Folding Rear View Mirror" name="Electric Folding Rear View Mirror">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Halogen Headlamps">Halogen Headlamps</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Halogen Headlamps" name="Halogen Headlamps">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Power Adjustable Exterior Rear View Mirror">Power Adjustable Exterior Rear View Mirror</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Power Adjustable Exterior Rear View Mirror" name="Power Adjustable Exterior Rear View Mirror">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                    <div class="right">
+                      <label for="Adjustable Headlights">Adjustable Headlights</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Adjustable Headlights" name="Adjustable Headlights">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Body Type">Body Type</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Body Type" name="Body Type">
+                          <option value="">Select</option>
+                      </select>
+                      <label for="Rear Window Washer">Rear Window Washer</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Rear Window Washer" name="Rear Window Washer">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                    <br class="remove">
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree5">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree5" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree5">
+                    <i class="bi bi-safe2-fill"></i>Safety
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree5" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree5">
+                  <div class="accordion-body">
+                    <div class="whole-body">
+                      <div class="left1">
+                      <label for="ISOFIX Child Seat Mounts">ISOFIX Child Seat Mounts</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="ISOFIX Child Seat Mounts" name="ISOFIX Child Seat Mounts">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Crash Sensor">Crash Sensor</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Crash Sensor" name="Crash Sensor">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Day & Night Rear View Mirror">Day & Night Rear View Mirror</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Day & Night Rear View Mirror" name="Day & Night Rear View Mirror">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="EBD">EBD</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="EBD" name="EBD">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Electronic Stability Control">Electronic Stability Control</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Electronic Stability Control" name="Electronic Stability Control">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Adjustable Seats">Adjustable Seats</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Adjustable Seats" name="Adjustable Seats">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                    <div class="left2">
+                      <label for="Engine Immobilizer">Engine Immobilizer</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Engine Immobilizer" name="Engine Immobilizer">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Rear Camera">Rear Camera</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Rear Camera" name="Rear Camera">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Passenger Side Rear View Mirror">Passenger Side Rear View Mirror</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Passenger Side Rear View Mirror" name="Passenger Side Rear View Mirror">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Engine Check Warning">Engine Check Warning</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Engine Check Warning" name="Engine Check Warning">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Anti Lock Braking System">Anti Lock Braking System</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Anti Lock Braking System" name="Anti Lock Braking System">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                          <option value="OPTIONAL">OPTIONAL</option>
+                      </select>
+                      <label for="Door Ajar Warning">Door Ajar Warning</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Door Ajar Warning" name="Door Ajar Warning">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                    <div class="right1">
+                      <label for="Driver Airbag">Driver Airbag</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Driver Airbag" name="Driver Airbag">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Passenger Airbag">Passenger Airbag</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Passenger Airbag" name="Passenger Airbag">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                          <option value="OPTIONAL">OPTIONAL</option>
+                      </select>
+                      <label for="Side Airbag-Front">Side Airbag-Front</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Side Airbag-Front" name="Side Airbag-Front">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Automatic Headlamps">Automatic Headlamps</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Automatic Headlamps" name="Automatic Headlamps">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Rear Window Washer">Rear Window Washer</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Rear Window Washer" name="Rear Window Washer">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Child Safety Locks">Child Safety Locks</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Child Safety Locks" name="Child Safety Locks">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                    <br class="remove">
+                    <div class="brakes extra">
+                      <label for="Side Impact Beams">Side Impact Beams</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Side Impact Beams" name="Side Impact Beams">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Driving Experience Control Eco">Driving Experience Control Eco</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Driving Experience Control Eco" name="Driving Experience Control Eco">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                  </div>
+                    </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree6">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree6" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree6">
+                    <i class="bi bi-broadcast-pin"></i>Entertainment & Communication
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree6" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree6">
+                  <div class="accordion-body engine">
+                    <div class="left">
+                      <label for="Bluetooth Connectivity">Bluetooth Connectivity</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Bluetooth Connectivity" name="Bluetooth Connectivity">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Drive Type">Drive Type</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Drive Type" name="Drive Type">
+                          <option value="">Select</option>
+                      </select>
+                      <label for="USB & Auxiliary input">USB & Auxiliary input</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="USB & Auxiliary input" name="USB & Auxiliary input">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                    <div class="right">
+                      <label for="Android Auto">Android Auto</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Android Auto" name="Android Auto">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Speakers Rear">Speakers Rear</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Speakers Rear" name="Speakers Rear">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                      <label for="Apple CarPlay">Apple CarPlay</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Apple CarPlay" name="Apple CarPlay">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                    <br class="remove">
+                    <div style="position: relative; left: -3px;">
+                      <label for="Audio System Remote Control">Audio System Remote Control</label>
+                      <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Audio System Remote Control" name="Audio System Remote Control">
+                          <option value="">Select</option>
+                          <option value="YES" selected>YES</option>
+                          <option value="NO">NO</option>
+                      </select>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="accordion-item">
+                <h2 class="accordion-header" id="panelsStayOpen-headingThree7">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#panelsStayOpen-collapseThree7" aria-expanded="false" aria-controls="panelsStayOpen-collapseThree7">
+                    <i class="bi bi-geo-alt-fill"></i>Place
+                  </button>
+                </h2>
+                <div id="panelsStayOpen-collapseThree7" class="accordion-collapse collapse" aria-labelledby="panelsStayOpen-headingThree7">
+                  <div class="accordion-body brakes">
+                    <label for="Place">Place(Where will you going to Buy)</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Place" name="Place">
+                        <option value="">Select</option>
+                    </select>
+                    <label for="Option">Option</label>
+                    <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Option" name="Option">
+                        <option value="">Select</option>
+                        <option value="YES">YES</option>
+                        <option value="NO">NO</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="button">
+              <input class="btn btn-primary" type="submit" value="Submit" id="btn">
+              <div class="spinner-border text-primary" id="loading" role="status" style="position:relative;left:-115px;top:15px;display:none;">
+                <span class="visually-hidden">Loading...</span>
+              </div>
+            </div>
+          </form>
+        </div>
+        </div>
+    </body>
+    <script>
+      var get=document.getElementById("loader");
+      var get2=document.getElementById("nav");
+      var get3=document.getElementById("content");
+      window.addEventListener("load",function(){
+        get.style.display="none";
+        get2.classList.add("fixed-top");
+        get3.style.display="block";
+      })   
+    </script>
+    <script>
+            //Append place information
+            var place = document.getElementById("Place");
+            var emi = document.getElementById("Emission Norm Compliance");
+            var drive = document.getElementById("Drive Type");
+            var count=0;
+            arr_for_static=[place,drive,emi]
+            {% for i in ["Place","Drive Type","Emission Norm Compliance"]%}
+                {% for e in data["{}".format(i)].unique() %}
+                    var create = document.createElement("option");
+                    create.value="{{ e }}";
+                    create.innerHTML="{{ e }}";
+                    arr_for_static[count].appendChild(create);
+                {% endfor %}
+                count=count+1;
+            {% endfor %}
+
+            function dynamic(id){
+                var test=document.getElementById(id);
+
+                var append = document.getElementById("brand");
+                var engine = document.getElementById("Engine Type");
+                var gear = document.getElementById("Gear Box");
+                var front = document.getElementById("Front Suspension");
+                var rear = document.getElementById("Rear Suspension");
+                var brake = document.getElementById("Front Brake Type");
+                var Body = document.getElementById("Body Type");
+
+                var all_=[append,engine,gear,front,rear,brake,Body];
+
+                append.value="";
+                append.innerHTML="";
+                engine.value="";
+                engine.innerHTML="";
+                gear.value="";
+                gear.innerHTML="";
+                front.value="";
+                front.innerHTML="";
+                rear.value="";
+                rear.innerHTML="";
+                brake.value="";
+                brake.innerHTML="";
+                Body.value="";
+                Body.innerHTML="";
+                console.log(test.value);
+                {% for model in data["Model"].unique() %}
+                  if(test.value=="{{ model }}"){
+                      //Models
+                      var i=0;
+                      {% for column in li%}
+                        var select = document.createElement("option");
+                        select.value="";
+                        select.innerHTML="Select";
+                        all_[i].appendChild(select);
+                        var first=0;
+                        {% for com in data.loc[data["Model"]==model]["{}".format(column)].unique() %}
+                            var create = document.createElement("option");
+                            create.value="{{ com }}";
+                            create.innerHTML="{{ com }}";
+                            all_[i].appendChild(create);
+                            first=first+1;
+                        {% endfor %}
+                        i=i+1;
+                      {% endfor %}
+                  }
+                {% endfor %}
+
+                
+            }
+            function dynamic_for_varient(id){
+                var brand_=document.getElementById("brand"); 
+                console.log(brand_.value);
+                var varient=document.getElementById("varient");
+                varient.value="";
+                varient.innerHTML="";
+                {% for brand in data["Brand"].unique() %}
+                   if(brand_.value == "{{ brand }}"){
+                        var select = document.createElement("option");
+                        select.value="";
+                        select.innerHTML="Select";
+                        varient.appendChild(select);
+                        {% for i in data.loc[data["Brand"]==brand]["Varient"].unique() %}
+                              var new_tag=document.createElement("option");
+                              new_tag.value="{{ i }}";
+                              new_tag.innerHTML="{{ i }}";
+                              varient.appendChild(new_tag);
+                        {% endfor %}
+                        
+                   }
+                {% endfor %}
+            }
+            var btn=document.getElementById("btn");
+            var load=document.getElementById("loading");
+            btn.addEventListener("click",function(){
+              btn.style.display="none";
+              load.style.display="block";
+            })
+        </script>
+    
+</html>
